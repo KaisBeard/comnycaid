@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function ChatListItems() {
   const params = useParams();
-  const id = params.userid
+  const id = params.userid;
   const [chatsList, setChatsList] = useState();
   const [isLoading, setIsLoading] = useState(true);
   console.log(id);
@@ -27,7 +27,7 @@ export default function ChatListItems() {
   } else {
     return(
       <div>
-        {chatsList.map(a => (<div><NavLink to={a._id}>{a.chatName}</NavLink>< br/></div>)   ) }
+        {chatsList.map(a => (<div><NavLink to={a._id}>{a.chatName}</NavLink>< br/></div>))}
       </div>
     )
   }

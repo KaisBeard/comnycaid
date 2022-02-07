@@ -12,7 +12,7 @@ function Messages({topicId}) {
   console.log(id);
 
   useEffect(() => {
-    axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`) // + id Testpath: 61f29200600666078e41b678
+    axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
       .then((response) => {
         console.log(response.data);
         setMessagesList(response.data.messages);
@@ -32,7 +32,6 @@ function Messages({topicId}) {
         return (
           <div>
             {messagesList.map(a => <Message messageData={a} />)}
-            
           </div>
         )
       }

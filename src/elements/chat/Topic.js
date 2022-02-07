@@ -3,6 +3,8 @@ import {useState, useEffect } from "react";
 import Messages from "./Messages";
 import Collapsible from 'react-collapsible';
 import axios from "axios";
+import {NavLink} from "react-router-dom";
+import Keyboard from "./Keyboard";
 
 function Topic({topicData}) {
   const topicId = topicData._id
@@ -21,7 +23,8 @@ function Topic({topicData}) {
     return (
     <div>
       <div className="topicHeader">
-        <h2>{topicTitle}</h2>
+        <h2>{topicTitle}</h2> 
+        <NavLink to="./topicoptions">Edit Topic</NavLink>
         <Collapsible trigger={topicDesc.substring(0, 35)}>
           {topicDesc.substring(35)}
         </Collapsible>
@@ -29,6 +32,9 @@ function Topic({topicData}) {
       <div className="MessagesList">
       <Messages topicId={topicId}/>
       </div>
+      <div className="keyboard">
+            <Keyboard />
+          </div>
     </div>
   )
 }

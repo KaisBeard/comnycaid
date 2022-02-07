@@ -7,6 +7,8 @@ import ChatsListItems from "./ChatsListItems";
 //put the thing on a sublevel or leave it on a toplevel?
 
 function ChatsList() {
+  const params = useParams();
+  const id = params.userid
     return (
       <div>
         <header>
@@ -14,14 +16,11 @@ function ChatsList() {
         </header>
         <div>
           <div className="chatslist">
-            <NavLink to="/chat">
-              This is one chat!
-            </NavLink> <br />
           </div>
           <ChatsListItems />
-          <button className="newChatButton">
+          <NavLink to={`/${id}/newchat`} className="newChatButton">
             Start a new chat here!
-          </button>
+          </NavLink>
         </div>
       </div>
     )

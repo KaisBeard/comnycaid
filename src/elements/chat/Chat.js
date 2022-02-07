@@ -14,13 +14,12 @@ function Chat() {
           <header>
             <NavLink to={`../${id}`}> Go Back </NavLink>
             This is the Menu!
+            <NavLink to={`./chatoptions`}> Chat Options </NavLink>
           </header>
           <div className="topicSwiper">
             <Topics />
           </div>
-          <div className="keyboard">
-            <Keyboard />
-          </div>
+          
         </div>
       )
   }
