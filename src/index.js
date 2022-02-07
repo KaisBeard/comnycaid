@@ -29,7 +29,7 @@ ReactDOM.render(
         <Route path=":userid/newchat" element={<CreateChat />} />
         <Route path=":userid/:chatid" element={<Chat />} />
         <Route path=":userid/:chatid/chatoptions" element={<ChatOptions />} />
-        <Route path=":userid/:chatid/topicoptions" element={<TopicOptions />} />
+        <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />
       </Route>
     </Routes>
   </BrowserRouter>,

@@ -30,6 +30,7 @@ function ChatOptions() {
         alert(`You edited a chat: ${chatName}.`);
         axios.put(`https://tybe.herokuapp.com/userchats/${id}`, { //do I need a new api to adress single chats?
           chatName:chatName,  
+          //add members
           })
           .then((response) => {
             console.log(response);
@@ -38,9 +39,13 @@ function ChatOptions() {
             console.log(error);
           });
         setChatName("");
-
       }
   
+      const deleteUserFromChat = () => {
+        alert(`sorry, not today!`);
+        //Finish function!
+      }
+
     if(isLoading){
         return(
             <div> loading ... </div>
@@ -65,9 +70,11 @@ function ChatOptions() {
         </label> 
         </form>
         <input type="submit" value="Change Chat Name" />
-      
 
       <p>Members: Can't be changed yet! </p> 
+
+      <button onClick={deleteUserFromChat}>Leave chat</button>
+
     </div>
   )
 }

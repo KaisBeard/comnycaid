@@ -24,7 +24,7 @@ function Topic({topicData}) {
     <div>
       <div className="topicHeader">
         <h2>{topicTitle}</h2> 
-        <NavLink to="./topicoptions">Edit Topic</NavLink>
+        <NavLink to={`./topicoptions/${topicId}`}>Edit Topic</NavLink>
         <Collapsible trigger={topicDesc.substring(0, 35)}>
           {topicDesc.substring(35)}
         </Collapsible>
@@ -33,7 +33,7 @@ function Topic({topicData}) {
       <Messages topicId={topicId}/>
       </div>
       <div className="keyboard">
-            <Keyboard />
+            <Keyboard topicId={topicId}/>
           </div>
     </div>
   )

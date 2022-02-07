@@ -5,20 +5,19 @@ import axios from "axios";
 
 function TopicOptions() {
     const params = useParams();
-    const id = params.chatid;
+    const id = params.topicid;
     const userid = params.userid;
     const [topicTitle, setTopicTitle] = useState("dummytopicname");
     const [topicDesc, setTopicDesc] = useState("dummytopicdesc");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://tybe.herokuapp.com/chattopics/${id}`) //do I need the id of a specific topic here?
+        axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`) //do I need the id of a specific topic here?
           .then((response) => {
             console.log(response.data);
-            //setTopicName(response.data...); pick correct path!
+            setTopicTitle(response.data.topic.topicTitle)
+            setTopicDesc(response.data.topic.topicDesc)
             setIsLoading(false);
-            //setTopicsList(response.data.topics);
-            //setIsLoading(false);
           })
           .catch(() => console.log("request failed"));
       }, []);
@@ -37,8 +36,13 @@ function TopicOptions() {
             console.log(error);
           });
         setTopicTitle("");
-
       }
+
+      const deleteTopic = () => {
+        //add delete request
+      }
+
+
   
     if(isLoading){
         return(
@@ -72,8 +76,8 @@ function TopicOptions() {
           />
         </label> 
         </form>
-        <input type="submit" value="Change Chat Name" />
-      
+        <input type="submit" value="Edit" />
+        <button onClick={deleteTopic}> Delete Topic </button>
     </div>
   )
 }

@@ -3,10 +3,13 @@ import {useState} from "react";
 import { useSwiperSlide } from 'swiper/react'; //right place?
 import { io, Socket } from "socket.io-client";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
-function Keyboard() {
+function Keyboard(topicId) {
+    const params = useParams();
+    const authorId = params.userid; 
     const [chatInput, setChatInput] = useState("");
-    const [id, setId] = useState("") //Needs to be fixed!
+    const [id, setId] = useState(topicId) //Needs to be fixed!
     const [messageEmoLvl, setMessageEmoLvl] = useState(1) 
     //const socket = io("http://localhost:3001/");
     //socket.emit("Message", `${chatOutput}`)
@@ -21,7 +24,8 @@ function Keyboard() {
           messageTime:Date.now(),
           messageReactions:"",
           messageEmoLvl:messageEmoLvl,
-          messageTopic:id //does it work that way? Will it recognize it's an id?
+          messageTopic:id, //does it work that way? Will it recognize it's an id?
+          messageAuthor:authorId
           })
           .then((response) => {
           console.log(response);
@@ -45,7 +49,7 @@ function Keyboard() {
       <br />
       <label>
         <input
-          type="range" min="0" max="50"
+          type="range" min="0" max="5"
           value={messageEmoLvl}
           onChange={e => setMessageEmoLvl(e.target.value)}
         />

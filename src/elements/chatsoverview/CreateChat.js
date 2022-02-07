@@ -31,7 +31,7 @@ function CreateChat() {
 
       const addPerson = (evt) => {
         evt.preventDefault();
-        setParticipants([...participants, newUser]) //why is this not working?
+        setParticipants([...participants, newUser]) 
         setNewUser("")
       }
 
