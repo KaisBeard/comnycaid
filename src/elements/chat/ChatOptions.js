@@ -28,12 +28,12 @@ function ChatOptions() {
       const handleSubmit = (evt) => {
         evt.preventDefault();
         alert(`You edited a chat: ${chatName}.`);
-        axios.put(`https://tybe.herokuapp.com/userchats/${id}`, { //do I need a new api to adress single chats?
+        axios.put(`https://tybe.herokuapp.com/userchats/${userid}/${id}`, { //do I need a new api to adress single chats?
           chatName:chatName,  
           //add members
           })
           .then((response) => {
-            console.log(response);
+          console.log(response);
 
           }, (error) => {
             console.log(error);
@@ -44,6 +44,19 @@ function ChatOptions() {
       const deleteUserFromChat = () => {
         alert(`sorry, not today!`);
         //Finish function!
+      }
+
+      const deleteChat = (evt) => {
+        evt.preventDefault();
+        alert(`You deleted the chat.`);
+        axios.delete(`https://tybe.herokuapp.com/userchats/${userid}/${id}`, { //do I need a new api to adress single chats?
+          })
+          .then((response) => {
+            console.log(response);
+            window.location.href=`../../../${userid}`;
+          }, (error) => {
+            console.log(error);
+          });
       }
 
     if(isLoading){
@@ -68,12 +81,14 @@ function ChatOptions() {
             onChange={e => setChatName(e.target.value)}
           />
         </label> 
-        </form>
+        < br />
         <input type="submit" value="Change Chat Name" />
-
+        </form>
       <p>Members: Can't be changed yet! </p> 
 
       <button onClick={deleteUserFromChat}>Leave chat</button>
+
+      <button onClick={deleteChat}>Delete chat</button>
 
     </div>
   )

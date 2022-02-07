@@ -11,6 +11,8 @@ import Login from "./elements/Login";
 import CreateChat from "./elements/chatsoverview/CreateChat";
 import ChatOptions from "./elements/chat/ChatOptions";
 import TopicOptions from "./elements/chat/TopicOptions";
+import UserProfile from "./elements/chatsoverview/UserProfile";
+
 /*
 ReactDOM.render(
   <React.StrictMode>
@@ -27,6 +29,7 @@ ReactDOM.render(
         <Route path="/" element={<Login />} />
         <Route path=":userid" element={<ChatsList />} /> 
         <Route path=":userid/newchat" element={<CreateChat />} />
+        <Route path=":userid/userprofile" element={<UserProfile />} />
         <Route path=":userid/:chatid" element={<Chat />} />
         <Route path=":userid/:chatid/chatoptions" element={<ChatOptions />} />
         <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />

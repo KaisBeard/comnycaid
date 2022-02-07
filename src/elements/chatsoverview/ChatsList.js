@@ -12,7 +12,13 @@ function ChatsList() {
     return (
       <div>
         <header>
-          This is the Menu!
+          <h1>Chats</h1> 
+          <NavLink to={`../`}>
+            Log out
+          </NavLink>
+          <NavLink to={`./userprofile`}>
+            Profile
+          </NavLink>
         </header>
         <div>
           <div className="chatslist">

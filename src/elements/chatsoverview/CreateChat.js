@@ -13,20 +13,24 @@ function CreateChat() {
     const [participants, setParticipants] = useState([id]);
     
     const handleSubmit = (evt) => {
+      try{
         evt.preventDefault();
         alert(`You created a new chat: ${chatName}. The participants are ${participants}`);
-        axios.post(`https://tybe.herokuapp.com/userchats/${id}`, {
+        axios.post(`https://tybe.herokuapp.com/userchats/${id}`, { 
           chatName:chatName, 
           chatMembers:participants,
-          })
+          }, {"Access-Control-Allow-Origin": "*"})
           .then((response) => {
             console.log(response);
             window.location.reload(true);
-          }, (error) => {
+            setChatName("");
+            setNewUser(""); //put to end
+          } /*, (error) => {
             console.log(error);
-          });
-        setChatName("");
-        setNewUser(""); 
+          }*/);} catch(err) {
+            console.log(err);
+          }
+
       }
 
       const addPerson = (evt) => {

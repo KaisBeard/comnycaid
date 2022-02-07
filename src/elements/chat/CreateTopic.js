@@ -17,7 +17,7 @@ function CreateTopic() {
         axios.post(`https://tybe.herokuapp.com/chattopics/${id}`, {
           topicTitle:topicTitle,
           topicDesc:topicDesc,
-          chatId:id //does is work that way? Will it recognize it's an id?
+          chatId:id 
           })
           .then((response) => {
             console.log(response);
