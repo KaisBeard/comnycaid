@@ -4,30 +4,24 @@ import { useParams } from "react-router-dom";
 import { Outlet, NavLink } from "react-router-dom";
 import ChatsListItems from "./ChatsListItems";
 
-//put the thing on a sublevel or leave it on a toplevel?
 
 function ChatsList() {
   const params = useParams();
   const id = params.userid
     return (
-      <div>
+      <div className="outerDiv">
         <header>
           <h1>Chats</h1> 
-          <NavLink to={`../`}>
-            Log out
-          </NavLink>
-          <NavLink to={`./userprofile`}>
+          <NavLink to={`./userprofile`} className="navLink">
             Profile
           </NavLink>
         </header>
-        <div>
-          <div className="chatslist">
-          </div>
+        <div className="chatslist">
           <ChatsListItems />
-          <NavLink to={`/${id}/newchat`} className="newChatButton">
-            Start a new chat here!
-          </NavLink>
         </div>
+        <NavLink to={`/${id}/newchat`} className="newChatButton navLink">
+          Start a new chat
+        </NavLink>
       </div>
     )
 }

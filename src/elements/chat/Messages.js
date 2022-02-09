@@ -4,12 +4,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Message from "./Message"
+import {useParams} from "react-router-dom";
+import { io, Socket } from "socket.io-client";
+const socket = io("http://localhost:3001/");
+//const socket = io("https://tybe.herokuapp.com/");
+
 
 function Messages({topicId}) {
+  const params = useParams();
+  const userId = params.userid
   const id = topicId
-  const [messagesList, setMessagesList] = useState();
+  const [messagesList, setMessagesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   console.log(id);
+
+  //const socketData = socketInput //is that needed?
 
   useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
@@ -21,8 +30,30 @@ function Messages({topicId}) {
       .catch(() => console.log("request failed"));
   }, []);
 
-  console.log(messagesList);
+  useEffect(() => {
+    socket.emit('joinTopic', { authorId:"messages", topicId:topicId }); //userId
+  }, [])
 
+  socket.on('message', (msg) => {
+    //console.log("message " + msg.messageAuthor);
+    setMessagesList([ ...messagesList,
+      {
+        messageText:msg.messageText, 
+        messageTime:msg.messageTime,
+        messageReactions:msg.messageReactions,
+        messageEmoLvl:msg.messageEmoLvl,
+        messageTopic:msg.messageTopic, 
+        messageAuthor:{_id:msg.messageAuthor, userName:msg.messageAuthorName }
+      }
+      
+    ]);
+  });
+  
+  //console.log(messagesList); doesnt log anything
+
+  //{socketInput ==! null ? socketInput.map(a => <Message messageData={a}/>) : <></>}
+
+  console.log(messagesList)
 
     if(isLoading === true) {
       return (
@@ -30,8 +61,9 @@ function Messages({topicId}) {
       )
     } else {
         return (
-          <div>
+          <div className="messagesList">
             {messagesList.map(a => <Message messageData={a} />)}
+            
           </div>
         )
       }

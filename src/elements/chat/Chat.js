@@ -27,18 +27,14 @@ function Chat() {
       return(
         <div>loading chat ...</div>
       ) } else {
-
       return (
-        <div>
+        <div className="outerDiv">
           <header>
-            <NavLink to={`../${id}`}> Go Back </NavLink>
             <h1>{chatName}</h1>
-            <NavLink to={`./chatoptions`}> Chat Options </NavLink>
+            <NavLink to={`./chatoptions`} className="navLink"> Chat Options </NavLink>
+            <NavLink to={`../${id}`} className="navLink"> Back </NavLink>
           </header>
-          <div className="topicSwiper">
-            <Topics />
-          </div>
-          
+          <Topics />
         </div>
       )
   }

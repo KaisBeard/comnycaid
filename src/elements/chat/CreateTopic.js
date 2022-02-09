@@ -13,7 +13,6 @@ function CreateTopic() {
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        alert(`You created a new topic: ${topicTitle} with the description: ${topicDesc}`);
         axios.post(`https://tybe.herokuapp.com/chattopics/${id}`, {
           topicTitle:topicTitle,
           topicDesc:topicDesc,
@@ -30,8 +29,8 @@ function CreateTopic() {
       }
 
   return (
-    <div>
-      <h2>Create new Topic ... </h2>
+    <div className="body">
+      <h2>Create a new Topic ... </h2>
       <form onSubmit={handleSubmit}>
         <label>
           Title
@@ -49,7 +48,7 @@ function CreateTopic() {
             onChange={e => setTopicDesc(e.target.value)}
           />
         </label>
-        <input type="submit" value="Send" />
+        <input type="submit" value="Create" className='formButton'/>
       </form>
     </div>
   )

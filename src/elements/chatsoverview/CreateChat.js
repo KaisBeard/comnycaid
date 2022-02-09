@@ -15,7 +15,6 @@ function CreateChat() {
     const handleSubmit = (evt) => {
       try{
         evt.preventDefault();
-        alert(`You created a new chat: ${chatName}. The participants are ${participants}`);
         axios.post(`https://tybe.herokuapp.com/userchats/${id}`, { 
           chatName:chatName, 
           chatMembers:participants,
@@ -24,7 +23,8 @@ function CreateChat() {
             console.log(response);
             window.location.reload(true);
             setChatName("");
-            setNewUser(""); //put to end
+            setNewUser(""); 
+            window.location.href=`../../../${id}`;
           } /*, (error) => {
             console.log(error);
           }*/);} catch(err) {
@@ -32,7 +32,6 @@ function CreateChat() {
           }
 
       }
-
       const addPerson = (evt) => {
         evt.preventDefault();
         setParticipants([...participants, newUser]) 
@@ -40,39 +39,44 @@ function CreateChat() {
       }
 
   return (
-    <div>
-      <h1>Create a new chat here!</h1>
-
-      <form onSubmit={addPerson}>
-        <label>
-          Invite people to your chat: 
-          <input
-            type="text"
-              value={newUser}
-              onChange={e => setNewUser(e.target.value)}
+    <div className="outerDiv">
+      <header>
+        <h1>Create new chat</h1>
+        <NavLink to={`../${id}`} className="navLink">Go back</NavLink>
+      </header>
+      
+      <div className='body'>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Name your chat
+            <input
+              type="text"
+              value={chatName}
+              onChange={e => setChatName(e.target.value)}
             />
-        </label>
-        <input type="submit" value="add" />
-      </form >
+          </label> 
+          <input type="submit" value="Create Chat" className='formButton' />
+        </form>
 
-        <br />
+        <form onSubmit={addPerson}>
+          <label>
+            Invite people to your chat
+            <input
+              type="text"
+                value={newUser}
+                onChange={e => setNewUser(e.target.value)}
+              />
+          </label>
+          <input type="submit" value="Add Person" className='formButton'/>
+        </form >
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name your chat:
-          <input
-            type="text"
-            value={chatName}
-            onChange={e => setChatName(e.target.value)}
-          />
-        </label> 
-        <input type="submit" value="Create chat" />
-      </form>
-      <h3>Participants in the chat:</h3>
-      <ul> 
-      {participants.map(a => <li>{a}</li>)}
-      </ul>
-      <div><NavLink to={`../${id}`}>Go back</NavLink></div>
+        <div>
+          <h3>Participants in the chat:</h3>
+          <ul> 
+          {participants.map(a => <li>{a}</li>)}
+          </ul>
+        </div>
+      </div>
     </div>
     
   )

@@ -27,14 +27,13 @@ function ChatOptions() {
 
       const handleSubmit = (evt) => {
         evt.preventDefault();
-        alert(`You edited a chat: ${chatName}.`);
         axios.put(`https://tybe.herokuapp.com/userchats/${userid}/${id}`, { //do I need a new api to adress single chats?
           chatName:chatName,  
           //add members
           })
           .then((response) => {
           console.log(response);
-
+          window.location.href=`../../${userid}/${id}`;
           }, (error) => {
             console.log(error);
           });
@@ -48,7 +47,6 @@ function ChatOptions() {
 
       const deleteChat = (evt) => {
         evt.preventDefault();
-        alert(`You deleted the chat.`);
         axios.delete(`https://tybe.herokuapp.com/userchats/${userid}/${id}`, { //do I need a new api to adress single chats?
           })
           .then((response) => {
@@ -59,40 +57,37 @@ function ChatOptions() {
           });
       }
 
-    if(isLoading){
-        return(
-            <div> loading ... </div>
-        )
+    if(isLoading) {
+        return(<div> loading ... </div>)
     } else {
-    return (
-    <div>
-        <header>
-            <NavLink to={`../${userid}/${id}`}>Back to the chat</NavLink>
-        </header>
-      <h1>Welcome to the chatoptions!</h1>
+      return (
+        <div className="outerDiv">
+            <header>
+              <h1>Chat Settings</h1>
+              <NavLink to={`../${userid}/${id}`} className="navLink">Back</NavLink>  
+            </header>
 
-      <p>Name: {chatName}</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          New chat name:
-          <input
-            type="text"
-            value={chatName}
-            onChange={e => setChatName(e.target.value)}
-          />
-        </label> 
-        < br />
-        <input type="submit" value="Change Chat Name" />
-        </form>
-      <p>Members: Can't be changed yet! </p> 
+            <div className="body">
+              <form onSubmit={handleSubmit}>
+                <label>
+                  New chat name:
+                  <input
+                    type="text"
+                    value={chatName}
+                    onChange={e => setChatName(e.target.value)}
+                  />
+                </label> 
+                <input type="submit" value="Change Name" className='formButton' />
+              </form>
 
-      <button onClick={deleteUserFromChat}>Leave chat</button>
+            <p>Members: Can't be changed yet! </p> 
 
-      <button onClick={deleteChat}>Delete chat</button>
-
-    </div>
-  )
-}
+            <button onClick={deleteUserFromChat} className='formButton'>Leave chat</button>
+            <button onClick={deleteChat} className='formButton'>Delete chat</button>
+          </div>
+        </div>
+      )
+    }
 }
 
 export default ChatOptions

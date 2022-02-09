@@ -26,8 +26,8 @@ export default function ChatListItems() {
     return(<div>loading chats ...</div>)
   } else {
     return(
-      <div>
-        {chatsList.map(a => (<div><NavLink to={a._id}>{a.chatName}</NavLink>< br/></div>))}
+      <div className="chatListItems">
+        {chatsList.map(a => (<NavLink to={a._id} className="navLink chatListItem">{a.chatName}</NavLink>))}
       </div>
     )
   }

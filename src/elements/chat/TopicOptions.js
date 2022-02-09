@@ -25,7 +25,6 @@ function TopicOptions() {
 
       const handleSubmit = (evt) => {
         evt.preventDefault();
-        alert(`You edited a topic: ${topicTitle}.`);
         axios.put(`https://tybe.herokuapp.com/chattopics/${chatid}/${id}/`, { //do I need a new api to adress single chats?
           topicTitle:topicTitle,
           topicDesc:topicDesc  
@@ -41,7 +40,6 @@ function TopicOptions() {
 
       const deleteTopic = (evt) => {
           evt.preventDefault();
-          alert(`You deleted the topic.`);
           axios.delete(`https://tybe.herokuapp.com/chattopics/${chatid}/${id}/`, { //do I need a new api to adress single chats?
             })
             .then((response) => {
@@ -52,43 +50,43 @@ function TopicOptions() {
             });
         }
       
-
-
-  
     if(isLoading){
         return(
             <div> loading ... </div>
         )
     } else {
     return (
-    <div>
+    <div className="outerDiv">
         <header>
-            <NavLink to={`../${userid}/${chatid}`}>Back to the chat</NavLink>
+            <h1>Topic Settings</h1>
+            <NavLink to={`../${userid}/${chatid}`} className="navLink">Back</NavLink>
+            
         </header>
-      <h1>Welcome to the topicoptions!</h1>
-      
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Title: {topicTitle}</p>
-          New title: 
-            <input
-              type="text"
-              value={topicTitle}
-              onChange={e => setTopicTitle(e.target.value)}
-            />
-        </label> 
-        <label>
-          <p>Description: {topicDesc}</p>
-          New Description: 
-            <input
-              type="text"
-              value={topicDesc}
-              onChange={e => setTopicDesc(e.target.value)}
-            />
-        </label> < br />
-        <input type="submit" value="Edit" />
+
+      <div className="body">
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Title: {topicTitle}</p>
+            New title: 
+              <input
+                type="text"
+                value={topicTitle}
+                onChange={e => setTopicTitle(e.target.value)}
+              />
+          </label> 
+          <label>
+            <p>Description: {topicDesc}</p>
+            New Description: 
+              <input
+                type="text"
+                value={topicDesc}
+                onChange={e => setTopicDesc(e.target.value)}
+              />
+          </label>
+          <input type="submit" value="Edit" />
         </form>
-        <button onClick={deleteTopic}> Delete Topic </button>
+        <button onClick={deleteTopic} className="formButton"> Delete Topic </button>
+      </div>
     </div>
   )
 }

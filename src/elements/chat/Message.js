@@ -33,7 +33,6 @@ function Message({messageData}) {
         }); */
   }
 
-
   const {
     messageEmoLvl,
     messageReactions,
@@ -42,14 +41,17 @@ function Message({messageData}) {
   } = messageData
   
     return (
-    <div>
-      <h3>{messageData.messageAuthor.userName}</h3> 
-      <p>{messageTime}</p>
-      <p>{messageText}</p>
-      <button onClick={createNewTopic}> 
-        Answer
-      </button>
-    </div>
+      
+        <div className={`messageFrame emotionLevel${messageEmoLvl} `}>
+         <div className="messageHeader">
+          <h3>{messageData.messageAuthor.userName}</h3>
+          <p>{messageTime}</p>          
+        </div>
+        <div className="messageText">{messageText}</div>
+        <button onClick={createNewTopic} className="answerButton"> 
+          Answer
+          </button>
+          </div>
   )
 }
 
