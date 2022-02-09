@@ -5,23 +5,23 @@ import axios from "axios";
 
 import Message from "./Message"
 import {useParams} from "react-router-dom";
-import { io, Socket } from "socket.io-client";
-const socket = io("http://localhost:3001/");
+
 //const socket = io("https://tybe.herokuapp.com/");
 
 
-function Messages({topicId}) {
+function Messages({topicId, messageList}) {
   const params = useParams();
   const userId = params.userid
   const id = topicId
-  const [messagesList, setMessagesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  //const [messagesList, setMessagesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log(messageList)
   //console.log(id);
 
   //const socketData = socketInput //is that needed?
 
-  useEffect(() => {
-    socket.emit('joinTopic', { authorId:userId, topicId:topicId });
+  /*useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
       .then((response) => {
         //console.log(response.data);
@@ -29,27 +29,13 @@ function Messages({topicId}) {
         setIsLoading(false);
       })
       .catch(() => console.log("request failed"));
-  }, []);
-
-  socket.on('message', (msg) => {
-    console.log(msg);
-    setMessagesList([ 
-      {
-        messageText:msg.messageText, 
-        messageTime:msg.messageTime,
-        messageReactions:msg.messageReactions,
-        messageEmoLvl:msg.messageEmoLvl,
-        messageTopic:msg.messageTopic, 
-        messageAuthor:{_id:msg.messageAuthor, userName:msg.messageAuthorName }
-      } , ...messagesList      
-    ]);
-  });
+  }, []);*/
   
   //console.log(messagesList); doesnt log anything
 
   //{socketInput ==! null ? socketInput.map(a => <Message messageData={a}/>) : <></>}
 
-  console.log(messagesList)
+  //console.log(messagesList)
 
     if(isLoading === true) {
       return (
@@ -58,7 +44,7 @@ function Messages({topicId}) {
     } else {
         return (
           <div className="messagesList">
-            {messagesList.map(a => <Message messageData={a} topicId={topicId} />)}
+            {messageList.map(a => <Message messageData={a} topicId={topicId} />)}
             
           </div>
         )

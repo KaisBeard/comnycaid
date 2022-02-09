@@ -6,7 +6,7 @@ import axios from "axios";
 import {NavLink, useParams} from "react-router-dom";
 import Keyboard from "./Keyboard";
 
-function Topic({topicData}) {
+function Topic({topicData, messageList}) {
   const params = useParams();
   const userId = params.userid;
   const topicId = topicData._id;
@@ -41,6 +41,7 @@ function Topic({topicData}) {
       
         <Messages 
           topicId={topicId}
+          messageList={messageList}
         />
       <Keyboard topicId={topicId}/>
     </div>
