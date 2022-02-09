@@ -16,27 +16,24 @@ function Messages({topicId}) {
   const id = topicId
   const [messagesList, setMessagesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(id);
+  //console.log(id);
 
   //const socketData = socketInput //is that needed?
 
   useEffect(() => {
+    socket.emit('joinTopic', { authorId:userId, topicId:topicId });
     axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setMessagesList(response.data.messages);
         setIsLoading(false);
       })
       .catch(() => console.log("request failed"));
   }, []);
 
-  useEffect(() => {
-    socket.emit('joinTopic', { authorId:"messages", topicId:topicId }); //userId
-  }, [])
-
   socket.on('message', (msg) => {
-    //console.log("message " + msg.messageAuthor);
-    setMessagesList([ ...messagesList,
+    console.log(msg);
+    setMessagesList([ 
       {
         messageText:msg.messageText, 
         messageTime:msg.messageTime,
@@ -44,8 +41,7 @@ function Messages({topicId}) {
         messageEmoLvl:msg.messageEmoLvl,
         messageTopic:msg.messageTopic, 
         messageAuthor:{_id:msg.messageAuthor, userName:msg.messageAuthorName }
-      }
-      
+      } , ...messagesList      
     ]);
   });
   
@@ -62,7 +58,7 @@ function Messages({topicId}) {
     } else {
         return (
           <div className="messagesList">
-            {messagesList.map(a => <Message messageData={a} />)}
+            {messagesList.map(a => <Message messageData={a} topicId={topicId} />)}
             
           </div>
         )

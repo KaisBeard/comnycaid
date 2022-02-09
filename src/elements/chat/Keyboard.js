@@ -20,7 +20,7 @@ function Keyboard(topicId) {
     useEffect(() => {
       axios.get(`https://tybe.herokuapp.com/userchats/${authorId}`)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           setAuthorName(response.data.user.userName);
           //setIsLoading(false);
         })
@@ -28,7 +28,7 @@ function Keyboard(topicId) {
     }, []);
 
     useEffect(() => {
-      socket.emit('joinTopic', { authorId:"keyboard", topicId:id }); //authorId
+      socket.emit('joinTopic', { authorId:authorId, topicId:id }); //authorId
     }, [])
 
     const handleSubmit = (evt) => {

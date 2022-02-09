@@ -16,14 +16,14 @@ function Topics() {
   const userId = params.userid;
   const [topicsList, setTopicsList] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  console.log(id);
+  //console.log(id);
   //const swiperSlider = useSwiperSlide();
 
 
   useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/chattopics/${id}`) 
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setTopicsList(response.data.topics);
         setIsLoading(false);
       })
@@ -40,7 +40,7 @@ function Topics() {
             spaceBetween={0}
             slidesPerView={1}
             //</div>onSlideChange={(swiper) => console.log(swiper) }
-            onSwiper={(swiper) => console.log(swiper)}  
+            //onSwiper={(swiper) => console.log(swiper)}  
             initialSlide={1}
             className="swiper"
             >

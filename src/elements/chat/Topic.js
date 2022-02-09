@@ -13,9 +13,9 @@ function Topic({topicData}) {
   const [isLoading, setIsLoading] = useState(true);
   //const [topicData, setTopicData]
   const [topicDescription, setTopicDescription] = useState("");
-  console.log(topicId);
+  //console.log(topicId);
   const [socketInput, setSocketInput] = useState([])
-  console.log(userId)
+  //console.log(userId)
 
   const {
     topicDesc,
