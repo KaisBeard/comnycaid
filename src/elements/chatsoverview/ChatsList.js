@@ -12,7 +12,7 @@ function ChatsList() {
       <div className="outerDiv">
         <header>
           <h1>Chats</h1> 
-          <NavLink to={`./userprofile`} className="navLink">
+          <NavLink to={`./userprofile`} className="navLink topRight">
             Profile
           </NavLink>
         </header>

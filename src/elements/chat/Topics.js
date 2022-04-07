@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {useState, useEffect} from "react";
-import Topic from "./Topic";
-//import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
+
+import { Virtual } from 'swiper';
+import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
+import 'swiper/css/virtual';
+
 //import "swiper/css/lazy";
 import CreateTopic from "./CreateTopic";
 import { Outlet, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
-import SwipeableRoutes from "react-swipeable-routes";
-//import Slider from "react-slick";
+//import SwipeableRoutes from "react-swipeable-routes";
+import Topic from "./Topic";
+
+
+
 
 //check what to leave out at the swiper!
 
@@ -26,7 +32,7 @@ function Topics() {
   useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/chattopics/${id}`) 
       .then((response) => {
-        //console.log(response.data);
+        console.log(response.data);
         setTopicsList(response.data.topics);
         setIsLoading(false);
       })
@@ -35,68 +41,44 @@ function Topics() {
 
   //console.log(topicsList[0]._id);
 
-  const RedView = () => (
-    <div style={{ height: 300, backgroundColor: "red" }}>Red</div>
-  );
-  const BlueView = () => (
-    <div style={{ height: 300, backgroundColor: "blue" }}>Blue</div>
-  );
-  const GreenView = () => (
-    <div style={{ height: 300, backgroundColor: "green" }}>Green</div>
-  );
-  const YellowView = () => (
-    <div style={{ height: 300, backgroundColor: "yellow" }}>Yellow</div>
-  );
-    
 
-
-
+  
   if(isLoading === true) {
     return(<div>loading topics ...</div>)
   } else {
-
-    
           return(
-            <div className="swiperContainer">   
-              <SwipeableRoutes>
-                <Route path="/red" component={RedView} />
-                <Route path="/blue" component={BlueView} />
-                <Route path="/green" component={GreenView} />
-                <Route path="/yellow" component={YellowView} />
-              </SwipeableRoutes>
-         
-
-          </div>
-          
-       
-      )
-    }
-}
-
-
-export default Topics
-
-//swiperslide render function
-
-/*
-<Swiper
+            <div className="swiperContainer">  
+          <Swiper
+            modules={[Virtual]}
             spaceBetween={0}
             slidesPerView={1}
             //</div>onSlideChange={(swiper) => console.log(swiper) }
             //onSwiper={(swiper) => console.log(swiper)}  
             initialSlide={1}
-            className="swiper"
-            hashNavigation={true}
-            
-
+            //addSlidesAfter={0}
+            //addSlidesBefore={0}
+            virtual
             >
+            <SwiperSlide className="swiper" data-hash="1"> 
+              < CreateTopic /> 
+            </SwiperSlide>
+            {topicsList.map(a => 
+              <SwiperSlide key={a._id} >
+                <Topic topicData={a}
+                />
+              </SwiperSlide>
+            )}
+          </Swiper>
+          
+        </div>
+      )
+    }
+}
 
-            <SwiperSlide className="swiper" data-hash="1"> < CreateTopic /> </SwiperSlide>
-              {topicsList.map(a => 
-                <SwiperSlide className="swiperSlide swiper swiper-lazy" data-hash={a._id}>
-                  <Topic topicData={a}
-                    className="swiper-lazy"
-                  /> 
-                </SwiperSlide>
-              )}
-          </Swiper> */
+export default Topics
+
+//swiperslide render function
+//Try virtual slides
+
+
+//key={} virtualIndex={}

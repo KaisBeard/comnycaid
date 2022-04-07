@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-//import { Outlet, NavLink, useParams } from "react-router-dom";
+//import {   Outlet, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 
 import Message from "./Message"
@@ -12,7 +12,7 @@ const socket = io("http://localhost:3001/");
 
 function Messages({topicId}) {
   const params = useParams();
-  const userId = params.userid
+  const userId = `${params.userid} + ${topicId} ` //added topic id to user id but didnt help with the sockets
   const id = topicId
   const [messagesList, setMessagesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,7 @@ function Messages({topicId}) {
   //const socketData = socketInput //is that needed?
 
   useEffect(() => {
-    socket.emit('joinTopic', { authorId:userId, topicId:topicId });
+    socket.emit('joinTopic', { authorId:userId, topicId:id });
     axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
       .then((response) => {
         //console.log(response.data);
@@ -33,23 +33,26 @@ function Messages({topicId}) {
 
   socket.on('message', (msg) => {
     console.log(msg);
+
+    if (msg.messageTopic === id) { //Control system because something in the sockets doesn't work properly
     setMessagesList([ 
       {
         messageText:msg.messageText, 
-        messageTime:msg.messageTime,
+        //messageTime:"recent", //macht das probleme?
         messageReactions:msg.messageReactions,
         messageEmoLvl:msg.messageEmoLvl,
         messageTopic:msg.messageTopic, 
         messageAuthor:{_id:msg.messageAuthor, userName:msg.messageAuthorName }
       } , ...messagesList      
     ]);
+  }
   });
   
   //console.log(messagesList); doesnt log anything
 
   //{socketInput ==! null ? socketInput.map(a => <Message messageData={a}/>) : <></>}
 
-  console.log(messagesList)
+  //console.log(messagesList)
 
     if(isLoading === true) {
       return (
@@ -59,7 +62,6 @@ function Messages({topicId}) {
         return (
           <div className="messagesList">
             {messagesList.map(a => <Message messageData={a} topicId={topicId} />)}
-            
           </div>
         )
       }

@@ -31,8 +31,8 @@ function Chat() {
         <div className="outerDiv">
           <header>
             <h1>{chatName}</h1>
-            <NavLink to={`./chatoptions`} className="navLink"> Chat Options </NavLink>
-            <NavLink to={`../${id}`} className="navLink"> Back </NavLink>
+            <NavLink to={`./chatoptions`} className="navLink"> Options </NavLink>
+            <NavLink to={`../${id}`} className="navLink topRight"> Back </NavLink>
           </header>
           <Topics />
         </div>

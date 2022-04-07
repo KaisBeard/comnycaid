@@ -1,5 +1,6 @@
 import React from 'react'
-import {useState, useEffect} from "react";
+import Textarea from 'react-expanding-textarea'
+import {useState, useEffect, useCallback, useRef} from "react";
 import { useSwiperSlide } from 'swiper/react'; //right place?
 import { io, Socket } from "socket.io-client";
 import axios from "axios";
@@ -31,6 +32,10 @@ function Keyboard(topicId) {
       socket.emit('joinTopic', { authorId:authorId, topicId:id }); //authorId
     }, [])
 
+   
+
+
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         socket.emit('chatMessage', {
@@ -45,7 +50,7 @@ function Keyboard(topicId) {
 
         axios.post(`https://tybe.herokuapp.com/topicmessages/${id}`, { //tybe.herokuapp.com
           messageText:chatInput, 
-          messageTime:Date.now(),
+          //messageTime:Date.now(),
           messageReactions:"",
           messageEmoLvl:messageEmoLvl,
           messageTopic:topicId.topicId, 
@@ -56,24 +61,86 @@ function Keyboard(topicId) {
           }, (error) => {
             console.log(error);
           });
+        
+          //Updating the topic to get the correct order
+        axios.put(`https://tybe.herokuapp.com/chattopics/${chatId}/${id}`,
+        {
+          updatedAt:new Date().toISOString()
+
+        }).then((response) => {
+          console.log(response);
+          }, (error) => {
+            console.log(error);
+          });
+
 
         setChatInput("")
     }
-   
+
+     // For the expanding textfield
+     const textareaRef = useRef(null)
+
+      const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleSubmit(e);
+      }
+    }
+
   return (
     <div className="keyboard">
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="textPreview">
+          <Textarea
+            value={chatInput}
+            
+            id="my-textarea"
+            maxLength="1000"
+            onChange={e => setChatInput(e.target.value)}
+            placeholder="Say something .."
+            ref={textareaRef}
+            onKeyDown={e => handleKeyDown(e)} 
+          />
+        </label>
+        <div className="keyBoardGrid1">Icon</div>
+        <div className="keyBoardGrid2">Icon</div>
+        <div className="keyBoardGrid3">Icon</div>
+        <input type="submit" value="SEND" className="keyboardSubmit keyBoardInput" />
+      </form>
+    </div>
+  )
+}
+
+export default Keyboard
+
+
+/*
+<label className="textPreview">
           <input
-            className="keyBoardInput"
+            size="40"
+            className="keyBoardInput "
+            contenteditable="true"
             type="text"
             placeholder="Write message ..."
             value={chatInput}
             onChange={e => setChatInput(e.target.value)}
           />
         </label>
-        
-        <label>
+
+*/
+
+/*
+ <textarea
+        cols="40"
+        rows="2"
+        placeholder='LONG TEXT'
+        > </textarea>
+
+
+*/
+
+
+/*
+<label>
           <input
             className="inputRange"
             type="range" min="0" max="5"
@@ -81,10 +148,5 @@ function Keyboard(topicId) {
             onChange={e => setMessageEmoLvl(e.target.value)}  
           />
         </label>
-        <input type="submit" value="Send" className="inputField keyBoardInput" />
-      </form>
-    </div>
-  )
-}
 
-export default Keyboard
+*/
