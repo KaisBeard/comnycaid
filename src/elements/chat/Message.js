@@ -17,14 +17,28 @@ function Message({messageData, topicId}) {
         })
         .then((response) => {
         console.log(response.data.data._id);
-        addMessageToTopic(response.data.data._id)}
-        , (error) => {
+        addMessageToTopic(response.data.data._id)
+        //reloadWindow(response.data.data._id);
+    
+        setTimeout(function () { //this aint pretty but await didn't work for some reason
+          window.location.reload(true)
+        }, 50)
+        
+        }, (error) => {
           console.log(error);
         })
-        .then (() => {
-          window.location.reload(true);
-          });}
-    
+        //.then (() => {
+        //  reloadWindow();
+        //  window.location.reload(true);
+        //  });
+        }
+
+        /*
+        const reloadWindow = async (data) => {
+         addMessageToTopic(data)   
+        .then(window.location.reload(true))
+        }*/
+
   const addMessageToTopic = (theTopicId) => {
     axios.post(`https://tybe.herokuapp.com/topicmessages/${topicId}`, { //how do I know the topicId??
       messageText:messageText, 
@@ -35,11 +49,12 @@ function Message({messageData, topicId}) {
       messageAuthor:messageData.messageAuthor._id
       })
       .then((response) => {
-      //console.log(response);
+      console.log(response);
       }, (error) => {
         console.log(error);
       });
   }
+
 
   const transformDate = (date) => {
     date.slice(11, 24)

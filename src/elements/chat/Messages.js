@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Suspense } from "react";
 import { useState, useEffect } from "react";
 //import {   Outlet, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
+
+
 
 import Message from "./Message"
 import {useParams} from "react-router-dom";
 import { io, Socket } from "socket.io-client";
 const socket = io("http://localhost:3001/");
 //const socket = io("https://tybe.herokuapp.com/");
+
 
 
 function Messages({topicId}) {
@@ -54,6 +57,7 @@ function Messages({topicId}) {
 
   //console.log(messagesList)
 
+
     if(isLoading === true) {
       return (
         <div>loading messages ...</div>
@@ -61,7 +65,15 @@ function Messages({topicId}) {
     } else {
         return (
           <div className="messagesList">
-            {messagesList.map(a => <Message messageData={a} topicId={topicId} />)}
+
+        
+     
+            {messagesList.map(a => 
+            <Suspense fallback={<div>Loading</div>}>  
+              <Message messageData={a} topicId={topicId} /> 
+            </Suspense>)}
+        
+
           </div>
         )
       }

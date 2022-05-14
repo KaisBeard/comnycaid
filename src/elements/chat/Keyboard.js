@@ -2,6 +2,11 @@ import React from 'react'
 import Textarea from 'react-expanding-textarea'
 import {useState, useEffect, useCallback, useRef} from "react";
 import { useSwiperSlide } from 'swiper/react'; //right place?
+import MicIcon from "../../graphics/icon_mic.png"
+import LocIcon from "../../graphics/icon_location.png"
+import MetIcon from "../../graphics/icon_metro.png"
+import CamIcon from "../../graphics/icon_camera.png"
+
 import { io, Socket } from "socket.io-client";
 import axios from "axios";
 import {useParams} from "react-router-dom";
@@ -101,9 +106,9 @@ function Keyboard(topicId) {
             onKeyDown={e => handleKeyDown(e)} 
           />
         </label>
-        <div className="keyBoardGrid1">Icon</div>
-        <div className="keyBoardGrid2">Icon</div>
-        <div className="keyBoardGrid3">Icon</div>
+        <div className="keyBoardGrid1"><img src={MicIcon}/></div>
+        <div className="keyBoardGrid2"><img src={MetIcon}/></div>
+        <div className="keyBoardGrid3"><img src={CamIcon}/></div>
         <input type="submit" value="SEND" className="keyboardSubmit keyBoardInput" />
       </form>
     </div>
