@@ -4,22 +4,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 
-
 import Message from "./Message"
 import {useParams} from "react-router-dom";
-
-//const socket = io("https://tybe.herokuapp.com/");
+import { io, Socket } from "socket.io-client";
+//const socket = io("http://localhost:3001/");
+const socket = io("https://tybe.herokuapp.com/");
 
 
 
 function Messages({topicId}) {
+  
   const params = useParams();
   const userId = `${params.userid} + ${topicId} ` //added topic id to user id but didnt help with the sockets
   const id = topicId
-  //const [messagesList, setMessagesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [messagesList, setMessagesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  console.log(messageList)
+  console.log(messagesList)
   //console.log(id);
 
   //const socketData = socketInput //is that needed?
