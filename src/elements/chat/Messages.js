@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Suspense } from "react";
 import { useState, useEffect } from "react";
-//import { Outlet, NavLink, useParams } from "react-router-dom";
+//import {   Outlet, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
+
+
 
 import Message from "./Message"
 import {useParams} from "react-router-dom";
@@ -9,9 +11,10 @@ import {useParams} from "react-router-dom";
 //const socket = io("https://tybe.herokuapp.com/");
 
 
-function Messages({topicId, messageList}) {
+
+function Messages({topicId}) {
   const params = useParams();
-  const userId = params.userid
+  const userId = `${params.userid} + ${topicId} ` //added topic id to user id but didnt help with the sockets
   const id = topicId
   //const [messagesList, setMessagesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +24,8 @@ function Messages({topicId, messageList}) {
 
   //const socketData = socketInput //is that needed?
 
-  /*useEffect(() => {
+  useEffect(() => {
+    socket.emit('joinTopic', { authorId:userId, topicId:id });
     axios.get(`https://tybe.herokuapp.com/topicmessages/${id}`)
       .then((response) => {
         //console.log(response.data);
@@ -29,7 +33,24 @@ function Messages({topicId, messageList}) {
         setIsLoading(false);
       })
       .catch(() => console.log("request failed"));
-  }, []);*/
+  }, []);
+
+  socket.on('message', (msg) => {
+    console.log(msg);
+
+    if (msg.messageTopic === id) { //Control system because something in the sockets doesn't work properly
+    setMessagesList([ 
+      {
+        messageText:msg.messageText, 
+        //messageTime:"recent", //macht das probleme?
+        messageReactions:msg.messageReactions,
+        messageEmoLvl:msg.messageEmoLvl,
+        messageTopic:msg.messageTopic, 
+        messageAuthor:{_id:msg.messageAuthor, userName:msg.messageAuthorName }
+      } , ...messagesList      
+    ]);
+  }
+  });
   
   //console.log(messagesList); doesnt log anything
 
@@ -44,8 +65,15 @@ function Messages({topicId, messageList}) {
     } else {
         return (
           <div className="messagesList">
-            {messageList.map(a => <Message messageData={a} topicId={topicId} />)}
-            
+
+        
+     
+            {messagesList.map(a => 
+            <Suspense fallback={<div>Loading</div>}>  
+              <Message messageData={a} topicId={topicId} /> 
+            </Suspense>)}
+        
+
           </div>
         )
       }

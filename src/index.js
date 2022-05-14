@@ -25,7 +25,7 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} >
+      
         <Route path="/" element={<Login />} />
         <Route path=":userid" element={<ChatsList />} /> 
         <Route path=":userid/newchat" element={<CreateChat />} />
@@ -33,10 +33,12 @@ ReactDOM.render(
         <Route path=":userid/:chatid" element={<Chat />} />
         <Route path=":userid/:chatid/chatoptions" element={<ChatOptions />} />
         <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />
-      </Route>
+      
     </Routes>
   </BrowserRouter>,
   rootElement
 );
 
 reportWebVitals();
+//<Route path="/" element={<App />} >  Was around the other routes before
+//</Route>

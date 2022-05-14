@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-
+import Logo from "../graphics/tybe_logo.png"
 
 function Login() {
   const [isLoading, setIsLoading] = useState(true)
@@ -46,6 +46,8 @@ function Login() {
     } else {
       return (
         <div>
+
+          <img src={Logo} />
             <form>
                 <label>User</label>
                 <input type="text"></input>
@@ -54,9 +56,9 @@ function Login() {
             </form>
             
           <NavLink to="/chatsoverview"> Login </NavLink>
-          <div><NavLink to={gordonLogin}> Login Gordon </NavLink></div>
-          <div><NavLink to={maxLogin}> Login Max </NavLink></div>
-          <div><NavLink to={annaLogin}> Login Anna </NavLink></div>
+          <div><NavLink to={gordonLogin}> Login Hulk </NavLink></div>
+          <div><NavLink to={maxLogin}> Login Spiderman </NavLink></div>
+          <div><NavLink to={annaLogin}> Login Ironman </NavLink></div>
         </div>
       )
     }

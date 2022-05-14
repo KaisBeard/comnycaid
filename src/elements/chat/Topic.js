@@ -38,12 +38,14 @@ function Topic({topicData, messageList}) {
           {topicDesc.substring(35)}
         </Collapsible>
       </div>
-      
+      <div className="messageKeyboardFlex">
         <Messages 
           topicId={topicId}
           messageList={messageList}
         />
+      
       <Keyboard topicId={topicId}/>
+      </div>
     </div>
   )
 }

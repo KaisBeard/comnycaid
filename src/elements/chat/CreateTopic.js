@@ -48,7 +48,7 @@ function CreateTopic() {
             onChange={e => setTopicDesc(e.target.value)}
           />
         </label>
-        <input type="submit" value="Create" className='formButton'/>
+        <input type="submit" value="CREATE" className='formButton'/>
       </form>
     </div>
   )
