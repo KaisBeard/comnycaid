@@ -10,8 +10,8 @@ import CamIcon from "../../graphics/icon_camera.png"
 import { io, Socket } from "socket.io-client";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-const socket = io("http://localhost:3001/");
-//const socket = io("https://tybe.herokuapp.com/");
+//const socket = io("http://localhost:3001/");
+const socket = io("https://tybe.herokuapp.com/");
 
 function Keyboard(topicId) {
     const params = useParams();

@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 //import {   Outlet, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 
-
-
 import Message from "./Message"
 import {useParams} from "react-router-dom";
 import { io, Socket } from "socket.io-client";
