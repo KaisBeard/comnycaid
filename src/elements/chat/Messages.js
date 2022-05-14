@@ -6,10 +6,8 @@ import axios from "axios";
 import Message from "./Message"
 import {useParams} from "react-router-dom";
 import { io, Socket } from "socket.io-client";
-const socket = io("http://localhost:3001/");
-//const socket = io("https://tybe.herokuapp.com/");
-
-
+//const socket = io("http://localhost:3001/");
+const socket = io("https://tybe.herokuapp.com/");
 
 function Messages({topicId}) {
   const params = useParams();
