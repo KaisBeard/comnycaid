@@ -32,7 +32,7 @@ function Topic({topicData}) {
       <div className="topicHeader">
         <div className="topicHeaderPartOne">
           <h2>{topicTitle}</h2> 
-          <NavLink to={`./topicoptions/${topicId}`} className="navLink">Edit</NavLink>
+          <NavLink to={`./topicoptions/${topicId}`} className="navLink topRight">Edit</NavLink>
         </div>
         <Collapsible trigger={topicDesc.substring(0, 35)} className="topicHeaderPartTwo" >
           {topicDesc.substring(35)}
