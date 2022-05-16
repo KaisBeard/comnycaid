@@ -41,26 +41,42 @@ function UserProfile() {
 
   return (
     <div className="outerDiv">
-        <header>
-          <h1>Profile</h1> 
-          <NavLink to={`../${id}`} className="navLink">
-            back
-          </NavLink>          
-        </header>
-        <div className='body'>
+      <header>
+        <h1>Profile</h1> 
+        <NavLink to={`../${id}`} className="navLink topRight">
+          back
+        </NavLink>          
+      </header>
+      <div className='body'>
         {isLoading? "loading ..." : 
         <div>
-          <p>Your E-mail: {userData.userEmail} </p>
-          <p>Your Username: {userData.userName} </p>
-          <p>Your Phone Number: {userData.userPhone}</p>
-          <p>Your Userid: {userData._id}</p>
+        <div>
+        <div className="userData">
+          <div>
+            <h2>E-mail:</h2>
+            <p> {userData.userEmail} </p>
+          </div>
+          <div>
+            <h2>Username:</h2>
+            <p> {userData.userName} </p>
+          </div>
+          <div>
+            <h2>Phone Number:</h2>
+            <p> {userData.userPhone}</p>
+          </div>
+          <div>
+            <h2>Userid:</h2>
+            <p> {userData._id}</p>
+          </div>
+        </div>
+        </div>
         </div>
         }
-        
+      
         <NavLink to={`../../`} className="navLink">
           Log out
         </NavLink>
-        </div>
+      </div>
     </div>
   )
 }

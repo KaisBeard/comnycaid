@@ -62,26 +62,29 @@ function ChatOptions() {
     } else {
       return (
         <div className="outerDiv">
-            <header>
-              <h1>Chat Settings</h1>
-              <NavLink to={`../${userid}/${id}`} className="navLink">Back</NavLink>  
-            </header>
+          <header>
+            <h1>Chat Settings</h1>
+            <NavLink to={`../${userid}/${id}`} className="navLink topRight">Back</NavLink>  
+          </header>
 
-            <div className="body">
-              <form onSubmit={handleSubmit}>
-                <label>
-                  New chat name:
-                  <input
-                    type="text"
-                    value={chatName}
-                    onChange={e => setChatName(e.target.value)}
-                  />
-                </label> 
-                <input type="submit" value="Change Name" className='formButton' />
-              </form>
+          <div className="body">
+            <form onSubmit={handleSubmit}>
+              <label>
+                New chat name:
+                <input
+                  type="text"
+                  value={chatName}
+                  onChange={e => setChatName(e.target.value)}
+                />
+              </label> 
+              <input type="submit" value="Change Name" className='formButton' />
+            </form>
 
-            <p>Members: Can't be changed yet! </p> 
-
+            <div className="alignLeft">
+              <p>Members:</p> 
+              <p>Can't be changed yet! </p>
+            </div>
+        
             <button onClick={deleteUserFromChat} className='formButton'>Leave chat</button>
             <button onClick={deleteChat} className='formButton'>Delete chat</button>
           </div>

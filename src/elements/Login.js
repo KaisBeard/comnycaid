@@ -45,20 +45,30 @@ function Login() {
     return(<div>is loading ...</div>)
     } else {
       return (
-        <div>
+        <div className="body">
 
-          <img src={Logo} />
+          <img src={Logo} className="tybeLogo" />
+
+          {/*
             <form>
                 <label>User</label>
                 <input type="text"></input>
                 <label>Password</label>
                 <input type="text"></input>
             </form>
-            
+          
+
           <NavLink to="/chatsoverview"> Login </NavLink>
-          <div><NavLink to={gordonLogin}> Login Hulk </NavLink></div>
+          */}
+
+          <div >
+          <h2>Trial logins</h2>
           <div><NavLink to={maxLogin}> Login Spiderman </NavLink></div>
+          <div><NavLink to={gordonLogin}> Login Hulk </NavLink></div>
           <div><NavLink to={annaLogin}> Login Ironman </NavLink></div>
+          </div>
+          <div>This is optimized for mobile only. On a bigger screen you may encounter problems with the layout.</div>
+
         </div>
       )
     }

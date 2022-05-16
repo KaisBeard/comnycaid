@@ -41,14 +41,22 @@ function Topics() {
 
   //console.log(topicsList[0]._id);
 
-
+  /*
+  useEffect(() => {
+    window.resizeTo(window.screen.availWidth, window.screen.availHeight);
+    console.log("window resized")
+  }, [])
+  */
   
-  if(isLoading === true) {
+  
+  /*if(isLoading === true) {
     return(<div>loading topics ...</div>)
-  } else {
+  } else {*/
           return(
             <div className="swiperContainer">  
           <Swiper
+            observer={true}
+            observeParents={true}
             modules={[Virtual]}
             spaceBetween={0}
             slidesPerView={1}
@@ -62,7 +70,10 @@ function Topics() {
             <SwiperSlide className="swiper" data-hash="1"> 
               < CreateTopic /> 
             </SwiperSlide>
-            {topicsList.map(a => 
+            
+            {
+            isLoading? <SwiperSlide className="swiper" data-hash="1"> loading ...</SwiperSlide> :
+            topicsList.map(a => 
               <SwiperSlide key={a._id} >
                 <Topic topicData={a}
                 />
@@ -73,7 +84,7 @@ function Topics() {
         </div>
       )
     }
-}
+/*}*/
 
 export default Topics
 

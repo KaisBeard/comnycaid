@@ -42,10 +42,24 @@ function CreateChat() {
     <div className="outerDiv">
       <header>
         <h1>Create new chat</h1>
-        <NavLink to={`../${id}`} className="navLink">Go back</NavLink>
+        <NavLink to={`../${id}`} className="navLink topRight">Go back</NavLink>
       </header>
       
       <div className='body'>
+        
+
+        <form onSubmit={addPerson} className="optionsForm">
+          <label>
+            Invite people to your chat
+            <input
+              type="text"
+                value={newUser}
+                onChange={e => setNewUser(e.target.value)}
+              />
+          </label>
+          <input type="submit" value="Add Person" className='formButton'/>
+        </form >
+
         <form onSubmit={handleSubmit}>
           <label>
             Name your chat
@@ -58,22 +72,10 @@ function CreateChat() {
           <input type="submit" value="Create Chat" className='formButton' />
         </form>
 
-        <form onSubmit={addPerson}>
-          <label>
-            Invite people to your chat
-            <input
-              type="text"
-                value={newUser}
-                onChange={e => setNewUser(e.target.value)}
-              />
-          </label>
-          <input type="submit" value="Add Person" className='formButton'/>
-        </form >
-
         <div>
           <h3>Participants in the chat:</h3>
           <ul> 
-          {participants.map(a => <li>{a}</li>)}
+            {participants.map(a => <li>{a}</li>)}
           </ul>
         </div>
       </div>

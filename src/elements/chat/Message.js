@@ -89,8 +89,8 @@ function Message({messageData, topicId}) {
     setYear(time.getFullYear())
     setMonth(("0" + (time.getMonth() + 1)).slice(-2))
     setDay(("0" + time.getDate()).slice(-2))
-    setHours(time.getHours())
-    setMinutes(time.getMinutes())
+    setHours(("0" + time.getHours()).slice(-2))
+    setMinutes(("0" + time.getMinutes()).slice(-2))
   
     //setTime(time.substring(11, 16))
     //setTime(createdAt.toLocaleDateString())
