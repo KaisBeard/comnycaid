@@ -59,14 +59,17 @@ function TopicOptions() {
     <div className="outerDiv">
         <header>
             <h1>Topic Settings</h1>
-            <NavLink to={`../${userid}/${chatid}`} className="navLink">Back</NavLink>
+            <NavLink to={`../${userid}/${chatid}`} className="navLink topRight">Back</NavLink>
             
         </header>
 
       <div className="body">
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Title: {topicTitle}</p>
+            <div className="divInsideLabel">
+              <h2>Title: </h2>
+              <p>{topicTitle}</p>
+            </div>
             New title: 
               <input
                 type="text"
@@ -75,8 +78,11 @@ function TopicOptions() {
               />
           </label> 
           <label>
-            <p>Description: {topicDesc}</p>
-            New Description: 
+            <div className="divInsideLabel divInsideLabel2">
+              <h2>Description: </h2>
+              <p>{topicDesc}</p>
+            </div>
+            New description: 
               <input
                 type="text"
                 value={topicDesc}

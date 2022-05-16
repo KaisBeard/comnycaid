@@ -322,27 +322,34 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 2em;
   padding: 1.5em;
-  height: 94vh;
+  /*height: 94vh;*/
   /*border: 1px solid #D55D8D;*/
 }
 
 .body * {
   display: flex;
   flex-direction: column;
-  
-  align-self: center; 
   gap: 0.7em;
-  width: 95%;
 }
+
+.alignLeft {
+  align-self: flex-start;
+  margin: 1em;
+}
+
+.alignLeft p { /*For chat settings*/
+  margin: 0px;
+}
+
 
 input[type="text"] {
   border: 3px solid #BA4FBB;
   padding: 1em;
   border-radius: 2em;  
-  width: 100%;
+  width: 80vw;
 }
 
 ::placeholder { 
@@ -350,8 +357,30 @@ input[type="text"] {
   opacity: 1;
 }
 
+.body button { /*Buttons in the option pages*/
+  border: hidden;
+  font-weight: 800;
+  font-size: large;
+}
 
-button {
+.divInsideLabel * { /*For topic options*/
+  margin: 0px;
+  padding:0px;
+  gap: 0px;
+}
+
+.divInsideLabel { /*For topic options*/
+  margin-bottom: 0.5em;
+  padding:0px;
+  gap: 0em;
+}
+
+.divInsideLabel2 {
+  margin-top: 2.5em;
+}
+
+
+button { /*Mainly Answer Button in Chat*/
   border: hidden;
   font-weight: 800;
   
@@ -361,7 +390,6 @@ button {
 }
 
 .formButton {
-  width: 90px;
   text-align: center;
   align-self: center;
 } 
@@ -374,6 +402,21 @@ input[type="submit"] {
   font-size: large;
   color: #BA4FBB;
 }
+
+.userData * { /*For Userprofile*/
+  margin: 0em 0em;
+  padding: 0em;
+}
+
+.userData {/*For Userprofile*/
+  gap: 2em;
+}
+
+/*Login page stuff*/
+.tybeLogo {
+  margin-top: 40%;
+}
+
 
 /*
 input[type="submit"]:not(.keyBoardInput) {
