@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route } from "react-router-dom"; //use Hashrouter
+import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom"; //use Hashrouter
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -23,7 +23,8 @@ ReactDOM.render(
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
+  {/*<BrowserRouter>*/}
     <Routes>
       
         <Route path="/" element={<Login />} />
@@ -35,7 +36,8 @@ ReactDOM.render(
         <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />
       
     </Routes>
-  </BrowserRouter>,
+  {/*</BrowserRouter>*/}
+  </HashRouter>,
   rootElement
 );
 
