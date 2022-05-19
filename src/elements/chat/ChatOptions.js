@@ -33,7 +33,7 @@ function ChatOptions() {
           })
           .then((response) => {
           console.log(response);
-          window.location.href=`../../${userid}/${id}`;
+          window.location.href=`../${id}`;
           }, (error) => {
             console.log(error);
           });
@@ -51,7 +51,7 @@ function ChatOptions() {
           })
           .then((response) => {
             console.log(response);
-            window.location.href=`../../../${userid}`;
+            window.location.href=`../`;
           }, (error) => {
             console.log(error);
           });

@@ -44,7 +44,7 @@ function TopicOptions() {
             })
             .then((response) => {
               console.log(response);
-              window.location.href=`../../../${userid}/${chatid}`;
+              window.location.href=`../`;
             }, (error) => {
               console.log(error);
             });

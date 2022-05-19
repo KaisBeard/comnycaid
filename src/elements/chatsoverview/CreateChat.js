@@ -24,7 +24,7 @@ function CreateChat() {
             window.location.reload(true);
             setChatName("");
             setNewUser(""); 
-            window.location.href=`../../../${id}`;
+            window.location.href=`../../${id}`;
           } /*, (error) => {
             console.log(error);
           }*/);} catch(err) {

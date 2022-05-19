@@ -19,65 +19,41 @@ function Login() {
         setGordonLogin(response.data.data[1]._id);
         setMaxLogin(response.data.data[0]._id);
         setAnnaLogin(response.data.data[2]._id);
-        
         setIsLoading(false);
       })
       .catch(() => console.log("request failed"));
   }, []);
-
-  console.log("GordonLogin:" + gordonLogin);
-
-/*
-  const {
-
-  } = data; */
-
-  /*
-  const buttonForLogins= () => {
-    setGordonLogin(data[0]);
-    console.log(gordonLogin);
-        setMaxLogin(data[1]._id);
-        setAnnaLogin(data[2]._id);
-        
-      }*/
 
   if(isLoading===true) {
     return(<div>is loading ...</div>)
     } else {
       return (
         <div className="body">
-
           <img src={Logo} className="tybeLogo" />
 
-          {/*
+          {/* Login field
             <form>
                 <label>User</label>
                 <input type="text"></input>
                 <label>Password</label>
                 <input type="text"></input>
             </form>
-          
-
           <NavLink to="/chatsoverview"> Login </NavLink>
           */}
 
-          <div >
-          <h2>Trial logins</h2>
-          <div><NavLink to={maxLogin}> Login Spiderman </NavLink></div>
-          <div><NavLink to={gordonLogin}> Login Hulk </NavLink></div>
-          <div><NavLink to={annaLogin}> Login Ironman </NavLink></div>
+          <div>
+            <h2>Trial logins</h2>
+            <div><NavLink to={maxLogin}> Login Spiderman </NavLink></div>
+            <div><NavLink to={gordonLogin}> Login Ironman </NavLink></div>
+            <div><NavLink to={annaLogin}> Login Hulk </NavLink></div>
           </div>
           <div>This is optimized for mobile only. On a bigger screen you may encounter problems with the layout.</div>
-
         </div>
       )
     }
 }
 
 export default Login
-
-
-//<button onClick={buttonForLogins}>set logins</button>
 
 
 
