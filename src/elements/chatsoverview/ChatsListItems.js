@@ -12,7 +12,7 @@ export default function ChatListItems() {
   useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/userchats/${userId}`)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setChatsList(response.data.chats);
         setIsLoading(false);
       })
