@@ -3,63 +3,58 @@ import {useState} from "react";
 import {useParams, NavLink} from "react-router-dom";
 import axios from "axios";
 
-//How do I add people by name instead of by id? Do I need to GET the userdata from the backend?
+//Add a way to add people!
 
 function CreateChat() {
-    const params = useParams();
-    const id = params.userid;
-    const [chatName, setChatName] = useState("");
-    const [newUser, setNewUser] = useState("");
-    const [participants, setParticipants] = useState([id]);
-    
-    const handleSubmit = (evt) => {
-      try{
-        evt.preventDefault();
-        axios.post(`https://tybe.herokuapp.com/userchats/${id}`, { 
-          chatName:chatName, 
-          chatMembers:participants,
-          }, {"Access-Control-Allow-Origin": "*"})
-          .then((response) => {
-            console.log(response);
-            window.location.reload(true);
-            setChatName("");
-            setNewUser(""); 
-            window.location.href=`../../../${id}`;
-          } /*, (error) => {
-            console.log(error);
-          }*/);} catch(err) {
-            console.log(err);
-          }
+  const params = useParams();
+  const userId = params.userid;
+  const [chatName, setChatName] = useState("");
+  const [newUser, setNewUser] = useState("");
+  const [participants, setParticipants] = useState([userId]);
+  
+  const handleSubmit = (evt) => {
+    try{
+      evt.preventDefault();
+      axios.post(`https://tybe.herokuapp.com/userchats/${userId}`, { 
+        chatName:chatName, 
+        chatMembers:participants,
+        }, {"Access-Control-Allow-Origin": "*"}) //Access Control
+      .then((response) => {
+        console.log(response);
+        window.location.reload(true);
+        setChatName("");
+        setNewUser(""); 
+        window.location.href=`../../${userId}`;
+      });
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
-      }
-      const addPerson = (evt) => {
-        evt.preventDefault();
-        setParticipants([...participants, newUser]) 
-        setNewUser("")
-      }
+  const addPerson = (evt) => {
+    evt.preventDefault();
+    setParticipants([...participants, newUser]) 
+    setNewUser("")
+  }
 
   return (
     <div className="outerDiv">
       <header>
         <h1>Create new chat</h1>
-        <NavLink to={`../${id}`} className="navLink topRight">Go back</NavLink>
+        <NavLink to={`../${userId}`} className="navLink topRight">Go back</NavLink>
       </header>
-      
       <div className='body'>
-        
-
         <form onSubmit={addPerson} className="optionsForm">
           <label>
             Invite people to your chat
             <input
               type="text"
-                value={newUser}
-                onChange={e => setNewUser(e.target.value)}
-              />
+              value={newUser}
+              onChange={e => setNewUser(e.target.value)}
+            />
           </label>
           <input type="submit" value="Add Person" className='formButton'/>
         </form >
-
         <form onSubmit={handleSubmit}>
           <label>
             Name your chat
@@ -71,7 +66,6 @@ function CreateChat() {
           </label> 
           <input type="submit" value="Create Chat" className='formButton' />
         </form>
-
         <div>
           <h3>Participants in the chat:</h3>
           <ul> 
@@ -80,8 +74,8 @@ function CreateChat() {
         </div>
       </div>
     </div>
-    
   )
+  
 }
 
 export default CreateChat

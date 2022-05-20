@@ -13,28 +13,18 @@ import ChatOptions from "./elements/chat/ChatOptions";
 import TopicOptions from "./elements/chat/TopicOptions";
 import UserProfile from "./elements/chatsoverview/UserProfile";
 
-/*
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);*/
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <HashRouter>
   {/*<BrowserRouter>*/}
     <Routes>
-      
-        <Route path="/" element={<Login />} />
-        <Route path=":userid" element={<ChatsList />} /> 
-        <Route path=":userid/newchat" element={<CreateChat />} />
-        <Route path=":userid/userprofile" element={<UserProfile />} />
-        <Route path=":userid/:chatid" element={<Chat />} />
-        <Route path=":userid/:chatid/chatoptions" element={<ChatOptions />} />
-        <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />
-      
+      <Route path="/" element={<Login />} />
+      <Route path=":userid" element={<ChatsList />} /> 
+      <Route path=":userid/newchat" element={<CreateChat />} />
+      <Route path=":userid/userprofile" element={<UserProfile />} />
+      <Route path=":userid/:chatid" element={<Chat />} />
+      <Route path=":userid/:chatid/chatoptions" element={<ChatOptions />} />
+      <Route path=":userid/:chatid/topicoptions/:topicid" element={<TopicOptions />} />
     </Routes>
   {/*</BrowserRouter>*/}
   </HashRouter>,
@@ -42,5 +32,3 @@ ReactDOM.render(
 );
 
 reportWebVitals();
-//<Route path="/" element={<App />} >  Was around the other routes before
-//</Route>

@@ -4,29 +4,27 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 
 function CreateTopic() {
-    const params = useParams();
-    const id = params.chatid;
-    const [topicTitle, setTopicTitle] = useState("");
-    const [topicDesc, setTopicDesc] = useState("");
-    //How do I save the chat's Id? Params?
-    //Add first message?
+  const params = useParams();
+  const chatId = params.chatid;
+  const [topicTitle, setTopicTitle] = useState("");
+  const [topicDesc, setTopicDesc] = useState("");
   
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
-        axios.post(`https://tybe.herokuapp.com/chattopics/${id}`, {
-          topicTitle:topicTitle,
-          topicDesc:topicDesc,
-          chatId:id 
-          })
-          .then((response) => {
-            console.log(response);
-            window.location.reload(true);
-          }, (error) => {
-            console.log(error);
-          });
-        setTopicTitle("");
-        setTopicDesc("");
-      }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    axios.post(`https://tybe.herokuapp.com/chattopics/${chatId}`, {
+      topicTitle:topicTitle,
+      topicDesc:topicDesc,
+      chatId:chatId 
+      })
+      .then((response) => {
+        //console.log(response);
+        window.location.reload(true);
+      }, (error) => {
+        console.log(error);
+      });
+    setTopicTitle("");
+    setTopicDesc("");
+  }
 
   return (
     <div className="body">
@@ -52,6 +50,7 @@ function CreateTopic() {
       </form>
     </div>
   )
+  
 }
 
 export default CreateTopic
