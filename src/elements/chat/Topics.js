@@ -19,7 +19,7 @@ function Topics() {
   useEffect(() => {
     axios.get(`https://tybe.herokuapp.com/chattopics/${chatId}`) 
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setTopicsList(response.data.topics);
         setIsLoading(false);
       })

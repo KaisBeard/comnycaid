@@ -63,7 +63,7 @@ function Message({messageData, topicId}) {
 
   useEffect(() => { //struggles with first message in a new topic
     //setTime(Date.parse(new Date (`${messageData.createdAt}`)))
-    console.log(time)
+    //console.log(time)
     setYear(time.getFullYear())
     setMonth(("0" + (time.getMonth() + 1)).slice(-2))
     setDay(("0" + time.getDate()).slice(-2))
