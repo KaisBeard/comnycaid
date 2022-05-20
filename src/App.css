@@ -125,6 +125,8 @@ header * {
 
 .messageFrame {
   margin: 0.5em 1.5em;
+  border: 3px solid #BA4FBB;
+  border-radius: 2em; 
   display: flex;
   flex-direction: column;
   justify-content:space-around;
