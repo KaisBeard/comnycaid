@@ -15,7 +15,7 @@ import UserProfile from "./elements/chatsoverview/UserProfile";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <HashRouter>
+  <HashRouter hashType="noslash">
   {/*<BrowserRouter>*/}
     <Routes>
       <Route path="/" element={<Login />} />
