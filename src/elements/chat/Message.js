@@ -3,8 +3,6 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import {useState, useEffect} from "react";
 
-//doublecheck this
-
 function Message({messageData, topicId}) {
   const params = useParams();
   const chatId = params.chatid;
@@ -52,6 +50,7 @@ function Message({messageData, topicId}) {
     date.slice(11, 24)
   }
 
+  //Stuff for the timestamp
   //console.log(createdAt + " typ " + typeof createdAt)
   const [time, setTime] = useState(new Date (`${messageData.createdAt}`))
   const [isLoading, setIsLoading] = useState(true)
@@ -62,7 +61,7 @@ function Message({messageData, topicId}) {
   const [minutes, setMinutes] = useState(``);
   const [displayedTime, setDisplayedTime] = useState(``)
 
-  useEffect(() => {
+  useEffect(() => { //struggles with first message in a new topic
     //setTime(Date.parse(new Date (`${messageData.createdAt}`)))
     console.log(time)
     setYear(time.getFullYear())
