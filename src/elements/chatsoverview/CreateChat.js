@@ -21,10 +21,12 @@ function CreateChat() {
         }, {"Access-Control-Allow-Origin": "*"}) //Access Control
       .then((response) => {
         console.log(response);
-        window.location.reload(true);
+        //window.location.reload(true);
         setChatName("");
         setNewUser(""); 
-        window.location.href=`../../${userId}`;
+        //window.location.pathname="../"
+        window.location.hash=`#/${userId}`
+        //window.location.href=`../../${userId}`;
       });
     } catch(err) {
       console.log(err);

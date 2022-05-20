@@ -14,7 +14,7 @@ function Login() {
   useEffect(() => {
     axios.get('https://tybe.herokuapp.com/user') 
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setData(response.data);
         setHulkLogin(response.data.data[1]._id);
         setSpidermanLogin(response.data.data[0]._id);
@@ -24,11 +24,9 @@ function Login() {
       .catch(() => console.log("request failed"));
   }, []);
 
-
   return (
     <div className="body">
       <img src={Logo} className="tybeLogo" />
-
       {/* Login field
         <form>
             <label>User</label>
@@ -38,7 +36,6 @@ function Login() {
         </form>
       <NavLink to="/chatsoverview"> Login </NavLink>
       */}
-
       <div>
         <h2>Trial logins</h2>
         {

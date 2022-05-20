@@ -32,7 +32,8 @@ function ChatOptions() {
       })
       .then((response) => {
         //console.log(response);
-        window.location.href=`../${chatId}`;
+        //window.location.href=`../${chatId}`;
+        window.location.hash=`#/${userid}/${chatId}`
       }, (error) => {
         console.log(error);
       });
@@ -51,7 +52,8 @@ function ChatOptions() {
     })
     .then((response) => {
       //console.log(response);
-      window.location.href=`../`;
+      //window.location.href=`../`;
+      window.location.hash=`#/${userid}`
     }, (error) => {
       console.log(error);
     });
