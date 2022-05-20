@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/comnycaid/static/css/main.8919074c.css",
+    "main.css": "/comnycaid/static/css/main.19e1cc73.css",
     "main.js": "/comnycaid/static/js/main.6826e321.js",
     "static/js/787.570aa0d4.chunk.js": "/comnycaid/static/js/787.570aa0d4.chunk.js",
     "static/media/tybe_logo.png": "/comnycaid/static/media/tybe_logo.9c8d77c956cfe8cc35ca.png",
     "index.html": "/comnycaid/index.html",
-    "main.8919074c.css.map": "/comnycaid/static/css/main.8919074c.css.map",
+    "main.19e1cc73.css.map": "/comnycaid/static/css/main.19e1cc73.css.map",
     "main.6826e321.js.map": "/comnycaid/static/js/main.6826e321.js.map",
     "787.570aa0d4.chunk.js.map": "/comnycaid/static/js/787.570aa0d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8919074c.css",
+    "static/css/main.19e1cc73.css",
     "static/js/main.6826e321.js"
   ]
 }
