@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/comnycaid/static/css/main.4743f234.css",
-    "main.js": "/comnycaid/static/js/main.50e2314d.js",
+    "main.css": "/comnycaid/static/css/main.8919074c.css",
+    "main.js": "/comnycaid/static/js/main.0d076cdd.js",
     "static/js/787.570aa0d4.chunk.js": "/comnycaid/static/js/787.570aa0d4.chunk.js",
     "static/media/tybe_logo.png": "/comnycaid/static/media/tybe_logo.9c8d77c956cfe8cc35ca.png",
     "index.html": "/comnycaid/index.html",
-    "main.4743f234.css.map": "/comnycaid/static/css/main.4743f234.css.map",
-    "main.50e2314d.js.map": "/comnycaid/static/js/main.50e2314d.js.map",
+    "main.8919074c.css.map": "/comnycaid/static/css/main.8919074c.css.map",
+    "main.0d076cdd.js.map": "/comnycaid/static/js/main.0d076cdd.js.map",
     "787.570aa0d4.chunk.js.map": "/comnycaid/static/js/787.570aa0d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4743f234.css",
-    "static/js/main.50e2314d.js"
+    "static/css/main.8919074c.css",
+    "static/js/main.0d076cdd.js"
   ]
 }
