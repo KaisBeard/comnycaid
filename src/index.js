@@ -13,6 +13,8 @@ import ChatOptions from "./elements/chat/ChatOptions";
 import TopicOptions from "./elements/chat/TopicOptions";
 import UserProfile from "./elements/chatsoverview/UserProfile";
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <HashRouter hashType="noslash">
@@ -30,5 +32,5 @@ ReactDOM.render(
   </HashRouter>,
   rootElement
 );
-
+serviceWorkerRegistration.register();
 reportWebVitals();
